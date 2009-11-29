@@ -84,6 +84,14 @@ rescue LoadError => e
         "Error message was: #{e.message.inspect}" )
 end
 
+# SDL_svg is optional, rescue if it fails.
+begin
+  require File.join( this_dir, "rubygame", "svg" )
+rescue LoadError => e
+  puts( "Warning: Could not load SDL_svg! " +
+        "Continuing anyway, but the SVG class will be missing.\n" +
+        "Error message was: #{e.message.inspect}" )
+end
 
 # Loaded late so Screen can undefine some inherited Surface methods.
 require File.join( this_dir, "rubygame", "screen" )
